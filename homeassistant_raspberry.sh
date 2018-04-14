@@ -11,6 +11,7 @@ mkdir -p ${PATH_HA_RUN}/share/tmp
 
 # docker
 # ====================
+echo "------------- install docker ------------"
 
 # deps
 apt-get install \
@@ -28,15 +29,15 @@ apt-get install docker-ce -y
 #usermod -aG docker $USER
 
 # config
-echo '
-{
-  "registry-mirrors": ["https://registry.docker-cn.com"]
-}
-' > /etc/docker/daemon.json
+echo '{
+  "registry-mirrors": ["https://registry.docker-cn.com"]
+}' > /etc/docker/daemon.json
 
 
 # python
 # ===================
+echo "------------- config python ------------"
+
 mkdir -p ~/.pip
 echo '
 [global]
@@ -46,6 +47,7 @@ index-url=http://mirrors.aliyun.com/pypi/simple
 
 # homeassistant
 # ===================
+echo "------------- install homeassistant ------------"
 
 # deps
 apt-get install bash socat jq -y
@@ -54,7 +56,27 @@ apt-get install bash socat jq -y
 #docker pull homeassistant/armhf-homeassistant:latest
 #docker pull homeassistant/armhf-hassio-supervisor:latest
 curl -sL https://raw.githubusercontent.com/home-assistant/hassio-build/master/install/hassio_install | bash -s -- -d $PATH_HA_RUN -m raspberrypi3
-# journalctl -fu hassio-supervisor.service
+
+
+
+# config homeassistant for minik
+# ====================
+echo "------------- config minik ------------"
+echo "wait service..."
+sleep 30
+
+echo "add minik hassio addons"
+curl -vv -l -H "Content-type: application/json" -X POST -d '{"addons_repositories"-addons/repository","https://github.com/able99/minik-hassio-addons"]}' 'http://localhost:8123/api/hassio/supervisor/options'
+
+echo "
+welcome to minik base on homeassistant
+
+1. check log
+journalctl -fu hassio-supervisor.service
+
+2. websit 
+http://ip:8123
+"
 
 
 

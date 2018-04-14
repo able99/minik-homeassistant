@@ -10,6 +10,8 @@
 
 # source
 # ========================
+echo "------------- config source list for soft ------------"
+
 echo "
 deb http://mirrors.aliyun.com/raspbian/raspbian/  stretch main non-free contrib
 deb-src http://mirrors.aliyun.com/raspbian/raspbian/  stretch main non-free contrib
@@ -25,14 +27,17 @@ apt-get dist-upgrade -y
 
 # config
 # ========================
+echo "------------- expand flash card ------------"
 raspi-config nonint do_expand_rootfs
 raspi-config nonint do_hostname minik
 
 # change pi password 
+echo "------------- config login user ------------"
 echo 'input password for user pi (the default sudo user)'
 passwd pi
 
 # config root shell
+echo "------------- config ssh for root ------------"
 echo 'PermitRootLogin without-password' >> /etc/ssh/sshd_config 
 
 mkdir -p ~/.ssh/
@@ -48,4 +53,5 @@ fi
 
 # end
 # ========================
+echo "------------- config ok and reboot ------------"
 reboot
