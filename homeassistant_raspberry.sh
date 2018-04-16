@@ -3,8 +3,8 @@
 
 # evn
 # ====================
-PATH_HA_RUN=${PATH_HA_RUN-"~/ha"}
-MATHINE=${$MATHINE-raspberrypi3}
+PATH_HA_RUN=${PATH_HA_RUN:-"~/ha"}
+MATHINE=${MATHINE:-"raspberrypi3"}
 
 # path
 # ====================
