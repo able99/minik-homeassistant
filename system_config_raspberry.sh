@@ -4,7 +4,9 @@
 # 4. touch ssh on /boot
 # 5. from '/boot/config.txt' add 'audio_pwm_mode=2' under 'dtparam=audio=on' and add gpu_mem=16  
 # 6. boot
-# 7. sudo su && cd ~ && curl -sL https://raw.githubusercontent.com/able99/minik-homeassistant/master/system_config_raspberry.sh | sh 
+# 7. 
+# sudo su 
+# cd ~ && wget https://raw.githubusercontent.com/able99/minik-homeassistant/master/system_config_raspberry.sh && sh system_config_raspberry.sh ; rm system_config_raspberry.sh
 
 
 # source

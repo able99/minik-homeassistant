@@ -1,8 +1,10 @@
-# 1. curl -sL https://raw.githubusercontent.com/able99/minik-homeassistant/master/homeassistant_raspberry.sh | nohup sh & ; tail -f nohup.out
+# 1. curl -sL https://raw.githubusercontent.com/able99/minik-homeassistant/master/homeassistant_raspberry.sh | nohup sh &
+# tail -f nohup.out
 
 # evn
 # ====================
-PATH_HA_RUN=~/ha
+PATH_HA_RUN=${PATH_HA_RUN-"~/ha"}
+MATHINE=${$MATHINE-raspberrypi3}
 
 # path
 # ====================
@@ -45,28 +47,28 @@ apt-get install bash socat jq -y
 # main
 #docker pull homeassistant/armhf-homeassistant:latest
 #docker pull homeassistant/armhf-hassio-supervisor:latest
-curl -sL https://raw.githubusercontent.com/home-assistant/hassio-build/master/install/hassio_install | bash -s -- -d $PATH_HA_RUN -m raspberrypi3
+curl -sL https://raw.githubusercontent.com/home-assistant/hassio-build/master/install/hassio_install | bash -s -- -d $PATH_HA_RUN -m $MATHINE
 
 
 
 # config homeassistant for minik
 # ====================
 echo "------------- config minik ------------"
-echo "wait service..."
-sleep 30
 
-echo "add minik hassio addons"
-curl -vv -l -H "Content-type: application/json" -X POST -d '{"addons_repositories"-addons/repository","https://github.com/able99/minik-hassio-addons"]}' 'http://localhost:8123/api/hassio/supervisor/options'
-
-echo "
+# end
+echo "------------- finish ----------------"
+cat << EOF
 welcome to minik base on homeassistant
 
 1. check log
 journalctl -fu hassio-supervisor.service
 
-2. websit 
+2. add minik hassio addons
+curl -vv -l -H "Content-type: application/json" -X POST -d '{"addons_repositories"-addons/repository","https://github.com/able99/minik-hassio-addons"]}' 'http://localhost:8123/api/hassio/supervisor/options'
+
+3. websit 
 http://ip:8123
-"
+EOF
 
 
 
