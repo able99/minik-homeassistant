@@ -17,7 +17,8 @@ mkdir -p ${PATH_HA_RUN}/share/tmp
 # ====================
 echo "------------- install docker ------------"
 # install
-curl -fsSL https://get.docker.com | bash -s docker --mirror Aliyun
+curl -fsSL https://get.docker.com | bash -s docker
+#curl -fsSL https://get.docker.com | bash -s docker --mirror Aliyun
 #usermod -aG docker $USER
 
 # config
