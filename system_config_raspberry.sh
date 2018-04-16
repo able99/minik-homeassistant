@@ -13,8 +13,8 @@
 # ========================
 echo "------------- config source list for soft ------------"
 
-echo "deb http://mirrors.aliyun.com/raspbian/raspbian/  stretch main non-free contrib
-deb-src http://mirrors.aliyun.com/raspbian/raspbian/  stretch main non-free contrib" > /etc/apt/sources.list
+#echo "deb http://mirrors.aliyun.com/raspbian/raspbian/  stretch main non-free contrib
+#deb-src http://mirrors.aliyun.com/raspbian/raspbian/  stretch main non-free contrib" > /etc/apt/sources.list
 
 #echo "deb http://mirrors.aliyun.com/debian/ stretch main ui" > /etc/apt/sources.list.d/raspi.list
 
