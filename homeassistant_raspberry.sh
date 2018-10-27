@@ -1,6 +1,11 @@
 # 1. curl -sL https://raw.githubusercontent.com/able99/minik-homeassistant/master/homeassistant_raspberry.sh | nohup sh &
 # tail -f nohup.out
 
+# note
+# if encounter error: invalid reference format, to fix:
+# echo 219.76.4.4 s3.amazonaws.com >> /etc/resolv.conf
+# echo 219.76.4.4 github-cloud.s3.amazonaws.com >> /etc/resolv.conf
+
 # evn
 # ====================
 PATH_HA_RUN=${PATH_HA_RUN:-"~/ha"}
@@ -43,7 +48,7 @@ index-url=http://mirrors.aliyun.com/pypi/simple
 echo "------------- install homeassistant ------------"
 
 # deps
-apt-get install bash socat jq -y
+apt-get install apparmor-utils apt-transport-https avahi-daemon ca-certificates curl dbus jq network-manager socat software-properties-common -y
 
 # main
 #docker pull homeassistant/armhf-homeassistant:latest
